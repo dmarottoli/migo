@@ -337,8 +337,9 @@ type Statement interface {
 
 // CallStatement captures function calls or block jumps in the SSA.
 type CallStatement struct {
-	Name   string
-	Params []*Parameter
+	Name    string
+	Params  []*Parameter
+	LineNum string
 }
 
 // SimpleName returns a filtered name.
@@ -347,8 +348,8 @@ func (s *CallStatement) SimpleName() string {
 }
 
 func (s *CallStatement) String() string {
-	return fmt.Sprintf("call %s(%s)",
-		s.SimpleName(), CallerParameterString(s.Params))
+	return fmt.Sprintf("call %s(%s) @%s",
+		s.SimpleName(), CallerParameterString(s.Params), s.LineNum)
 }
 
 // AddParams add parameter(s) to a Function call.
@@ -369,16 +370,18 @@ func (s *CallStatement) AddParams(params ...*Parameter) {
 // CloseStatement closes a channel.
 type CloseStatement struct {
 	Chan string // Channel name
+	LineNum string
 }
 
 func (s *CloseStatement) String() string {
-	return fmt.Sprintf("close %s", s.Chan)
+	return fmt.Sprintf("close %s @%s", s.Chan, s.LineNum)
 }
 
 // SpawnStatement captures spawning of goroutines.
 type SpawnStatement struct {
-	Name   string
-	Params []*Parameter
+	Name    string
+	Params  []*Parameter
+	LineNum string
 }
 
 // SimpleName returns a filtered name.
@@ -387,8 +390,9 @@ func (s *SpawnStatement) SimpleName() string {
 }
 
 func (s *SpawnStatement) String() string {
-	return fmt.Sprintf("spawn %s(%s)",
-		s.SimpleName(), CallerParameterString(s.Params))
+	// TODO: Cuando el statement tenga el número de línea incluido tenés que hacer que lo imprima acá.
+	return fmt.Sprintf("spawn %s(%s) @%s",
+		s.SimpleName(), CallerParameterString(s.Params), s.LineNum)
 }
 
 // AddParams add parameter(s) to a goroutine spawning Function call.
@@ -411,11 +415,12 @@ type NewChanStatement struct {
 	Name NamedVar
 	Chan string
 	Size int64
+	LineNum string
 }
 
 func (s *NewChanStatement) String() string {
-	return fmt.Sprintf("let %s = newchan %s, %d",
-		s.Name.Name(), nameFilter.Replace(s.Chan), s.Size)
+	return fmt.Sprintf("let %s = newchan %s, %d @%s",
+		s.Name.Name(), nameFilter.Replace(s.Chan), s.Size, s.LineNum)
 }
 
 // IfStatement is a conditional statement.
@@ -424,6 +429,7 @@ func (s *NewChanStatement) String() string {
 type IfStatement struct {
 	Then []Statement
 	Else []Statement
+	LineNum string
 }
 
 func (s *IfStatement) String() string {
@@ -482,26 +488,30 @@ func (s *SelectStatement) String() string {
 }
 
 // TauStatement is inaction.
-type TauStatement struct{}
+type TauStatement struct{
+	LineNum string
+}
 
 func (s *TauStatement) String() string {
-	return "tau"
+	return fmt.Sprintf("tau @%s", s.LineNum)
 }
 
 // SendStatement sends to Chan.
 type SendStatement struct {
 	Chan string
+	LineNum string
 }
 
 func (s *SendStatement) String() string {
-	return fmt.Sprintf("send %s", s.Chan)
+	return fmt.Sprintf("send %s @%s", s.Chan, s.LineNum)
 }
 
 // RecvStatement receives from Chan
 type RecvStatement struct {
 	Chan string
+	LineNum string
 }
 
 func (s *RecvStatement) String() string {
-	return fmt.Sprintf("recv %s", s.Chan)
+	return fmt.Sprintf("recv %s @%s", s.Chan, s.LineNum)
 }
