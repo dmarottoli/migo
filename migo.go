@@ -429,7 +429,6 @@ func (s *NewChanStatement) String() string {
 type IfStatement struct {
 	Then []Statement
 	Else []Statement
-	LineNum string
 }
 
 func (s *IfStatement) String() string {
