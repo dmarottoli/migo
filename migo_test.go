@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
-	"github.com/damifur/migo/mock_migo"
+	"github.com/dmarottoli/migo/mock_migo"
 )
 
 // ErrFuncNotExists is Error if function does not exist in program which is
@@ -286,8 +286,8 @@ def main.wait#1(x):
 
 // Test simplifying name.
 func TestSimpleName(t *testing.T) {
-	fullGoName := "(github.com/damifur/migo).String#1"
-	simpleName := "github.com_damifur_migo.String#1"
+	fullGoName := "(github.com/dmarottoli/migo).String#1"
+	simpleName := "github.com_dmarottoli_migo.String#1"
 	s := &CallStatement{Name: fullGoName, Params: []*Parameter{}}
 	if s.SimpleName() != simpleName {
 		t.Errorf("SimplifyName of %s should be %s but got %s",

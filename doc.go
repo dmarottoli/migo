@@ -52,4 +52,4 @@
 //    // ... add functions
 //    migoType := p.String()
 //
-package migo // import "github.com/damifur/migo"
+package migo // import "github.com/dmarottoli/migo"

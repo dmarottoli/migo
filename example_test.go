@@ -5,7 +5,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/damifur/migo"
+	"github.com/dmarottoli/migo"
 )
 
 func ExampleStmtsStack() {
