@@ -1,4 +1,4 @@
-package migo
+package migo // import "github.com/dmarottoli/migo"
 
 // Plain NamedVar for use with parser.
 

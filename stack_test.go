@@ -1,4 +1,4 @@
-package migo_test
+package migo_test // import "github.com/dmarottoli/migo"
 
 import (
 	"testing"

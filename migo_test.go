@@ -1,14 +1,7 @@
-package migo
+package migo // import "github.com/dmarottoli/migo"
+import "testing"
 
-import (
-	"fmt"
-	"strings"
-	"testing"
-
-	"github.com/golang/mock/gomock"
-	"github.com/dmarottoli/migo/mock_migo"
-)
-
+/*
 // ErrFuncNotExists is Error if function does not exist in program which is
 // should.
 type ErrFuncNotExist struct {
@@ -283,6 +276,7 @@ def main.wait#1(x):
 			expect, parsed.String())
 	}
 }
+*/
 
 // Test simplifying name.
 func TestSimpleName(t *testing.T) {
@@ -294,3 +288,5 @@ func TestSimpleName(t *testing.T) {
 			fullGoName, simpleName, s.SimpleName())
 	}
 }
+
+

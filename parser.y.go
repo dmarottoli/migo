@@ -1,5 +1,5 @@
 //line migo.y:2
-package migo
+package migo // import "github.com/dmarottoli/migo"
 
 import __yyfmt__ "fmt"
 

@@ -1,4 +1,4 @@
-package migo
+package migo // import "github.com/dmarottoli/migo"
 
 //go:generate go tool yacc -p migo -o parser.y.go migo.y
 

@@ -1,13 +1,6 @@
-package migo_test
+package migo_test // import "github.com/dmarottoli/migo"
 
-import (
-	"fmt"
-	"log"
-	"strings"
-
-	"github.com/dmarottoli/migo"
-)
-
+/*
 func ExampleStmtsStack() {
 	b := []migo.Statement{}
 	s := migo.NewStmtsStack() // Create a new stack
@@ -79,3 +72,4 @@ func ExampleParse() {
 	// def main.sndr(ch):
 	//     send ch;
 }
+*/
